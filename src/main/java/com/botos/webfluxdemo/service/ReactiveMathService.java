@@ -1,5 +1,6 @@
 package com.botos.webfluxdemo.service;
 
+import com.botos.webfluxdemo.dto.MultiplyRequestDto;
 import com.botos.webfluxdemo.dto.Response;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -23,5 +24,10 @@ public class ReactiveMathService {
 		           .doOnNext(index -> log.info("Reactive math service processing: {}", index))
 		           .map(index -> index * input)
 		           .map(Response::new);
+	}
+
+	public Mono<Response> multiply(Mono<MultiplyRequestDto> dtoMono) {
+		return dtoMono.map(dto -> dto.first() * dto.second())
+		              .map(Response::new);
 	}
 }
