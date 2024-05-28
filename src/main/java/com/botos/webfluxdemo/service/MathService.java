@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import static com.botos.webfluxdemo.service.SleepUtility.sleepSeconds;
+
 @Log4j2
 @Service
 public class MathService {
@@ -17,8 +19,8 @@ public class MathService {
 
 	public List<Response> findTimesTable(int input) {
 		return IntStream.rangeClosed(1, 10)
-		                .peek(index -> SleepUtility.sleepSeconds(1))
-		                .peek(index -> log.info("Math service processing: " + index))
+		                .peek(index -> sleepSeconds(1))
+		                .peek(index -> log.info("Math service processing: {}", index))
 		                .mapToObj(index -> new Response(index * input))
 		                .toList();
 	}

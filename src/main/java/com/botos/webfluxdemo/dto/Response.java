@@ -3,13 +3,13 @@ package com.botos.webfluxdemo.dto;
 import lombok.Data;
 import lombok.ToString;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @ToString
 public class Response {
 
-	private LocalDate date = LocalDate.now();
+	private LocalDateTime date = LocalDateTime.now();
 	private int output;
 
 	public Response(int output) {

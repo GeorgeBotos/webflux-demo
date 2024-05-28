@@ -13,7 +13,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/math")
+@RequestMapping("math")
 public class MathController {
 
 	private final MathService mathService;
