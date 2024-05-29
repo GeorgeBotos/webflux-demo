@@ -32,6 +32,4 @@ public class CalculatorRouter {
 		                                                   .get("OP")
 		                                                   .equals(operation));
 	}
-
-
 }
