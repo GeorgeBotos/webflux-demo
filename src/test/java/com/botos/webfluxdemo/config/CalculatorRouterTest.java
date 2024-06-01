@@ -23,4 +23,18 @@ class CalculatorRouterTest {
 		            .expectNextMatches(result -> result.getOutput() == 7)
 		            .verifyComplete();
 	}
+
+	@Test
+	void testForAuthentication() {
+		StepVerifier.create(webClient.get()
+		                             .uri("calculator/{firstInput}/{secondInput}", 5, 2)
+		                             .headers(headers -> {
+										 headers.setBasicAuth("username", "password");
+										 headers.add("OP", "-");
+		                             })
+		                             .retrieve()
+		                             .bodyToMono(Response.class))
+		            .expectNextMatches(result -> result.getOutput() == 3)
+		            .verifyComplete();
+	}
 }
